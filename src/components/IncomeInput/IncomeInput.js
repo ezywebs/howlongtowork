@@ -5,9 +5,10 @@ const StyledSliderDiv = styled.div`
 display: flex;
 align-items: center;  
 input {
-    width: 100%;
-    text-align: right;
-  }
+  width: 100%;
+  text-align: right;
+  margin-bottom: 15px;
+}
 `;
 
 const StyledInputDiv = styled.div`
