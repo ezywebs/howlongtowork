@@ -1,0 +1,10 @@
+export const HOURS_IN_DAY = 8;
+export const DAYS_IN_WEEK = 5;
+export const WEEKS_IN_MONTH = 4;
+export const WEEKS_IN_YEAR = 52;
+export const MONTHS_IN_YEAR = 12;
+export const HOURS_IN_WEEK = HOURS_IN_DAY * DAYS_IN_WEEK;
+export const HOURS_IN_YEAR = HOURS_IN_DAY * WEEKS_IN_YEAR;
+export const HOURS_IN_MONTH = HOURS_IN_YEAR / MONTHS_IN_YEAR;
+export const MAX_PEOPLE_IN_ROW = 4;
+export const ONE_MILLION = 1000000;
