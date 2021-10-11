@@ -1,4 +1,5 @@
 import StyledDiv from "../styled/Div/StyledDiv";
+import PropTypes from "prop-types";
 
 const IncomeBreakDown = ({ income }) => {
   return (
@@ -12,6 +13,10 @@ const IncomeBreakDown = ({ income }) => {
       </div>
     </StyledDiv>
   );
+};
+
+IncomeBreakDown.propTypes = {
+  income: PropTypes.object.isRequired,
 };
 
 export default IncomeBreakDown;

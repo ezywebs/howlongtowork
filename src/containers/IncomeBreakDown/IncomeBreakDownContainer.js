@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import IncomeBreakDown from "../../components/IncomeBreakDown";
 import {
   HOURS_IN_DAY,
@@ -20,6 +21,11 @@ const IncomeBreakDownContainer = ({ income, currencyRate }) => {
       }}
     />
   );
+};
+
+IncomeBreakDownContainer.propTypes = {
+  income: PropTypes.number.isRequired,
+  currencyRate: PropTypes.number.isRequired,
 };
 
 export default IncomeBreakDownContainer;

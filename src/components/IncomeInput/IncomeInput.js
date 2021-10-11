@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import CurrencySelect from "../CurrencySelect";
 import StyledDiv from "../styled/Div/StyledDiv";
 import { isEmptyObj } from "../../utils";
@@ -26,7 +27,13 @@ const StyledInputDiv = styled.div`
   }
 `;
 
-const IncomeInput = (props) => {
+const IncomeInput = ({
+  income,
+  currencies,
+  currencyCode,
+  handleChange,
+  handleCurrencyChange,
+}) => {
   return (
     <StyledDiv>
       <h2>What is your hourly rate?</h2>
@@ -34,32 +41,35 @@ const IncomeInput = (props) => {
         <StyledSliderDiv className="col-md-8">
           <input
             type="range"
-            value={props.income}
-            onChange={props.handleChange}
+            value={income}
+            onChange={handleChange}
             min="0"
             max="1000"
           />
         </StyledSliderDiv>
         <StyledInputDiv className="col-md-2 d-flex align-items-center justify-content-around">
-          <input
-            type="number"
-            value={props.income}
-            onChange={props.handleChange}
-            min="0"
-          />
+          <input type="number" value={income} onChange={handleChange} min="0" />
         </StyledInputDiv>
-        {(!isEmptyObj(props.currencies) && (
+        {(!isEmptyObj(currencies) && (
           <CurrencySelect
             className="col-md-2"
-            currencyCode={props.currencyCode}
-            currencies={props.currencies}
-            handleChange={props.handleCurrencyChange}
+            currencyCode={currencyCode}
+            currencies={currencies}
+            handleChange={handleCurrencyChange}
           />
         )) ||
           "USD"}
       </div>
     </StyledDiv>
   );
+};
+
+IncomeInput.propTypes = {
+  income: PropTypes.number.isRequired,
+  currencies: PropTypes.array.isRequired,
+  currencyCode: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleCurrencyChange: PropTypes.func.isRequired,
 };
 
 export default IncomeInput;

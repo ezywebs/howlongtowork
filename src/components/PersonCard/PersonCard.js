@@ -1,13 +1,14 @@
-import styled from 'styled-components';
-import Badge from '../Badge/Badge';
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Badge from "../Badge/Badge";
 
 const StyledPersonCard = styled.div`
   cursor: pointer;
   border-bottom: 2px solid #333;
   padding: 10px;
-  :hover{
+  :hover {
     font-weight: bold;
-    img{
+    img {
       box-shadow: 0 0 20px 2px;
       box-shadow-color: #364350;
       width: 100%;
@@ -16,35 +17,51 @@ const StyledPersonCard = styled.div`
       margin-bottom: 0;
     }
   }
-  img{
-    width: ${props => props.selected ? "100%" : "99%"};
+  img {
+    width: ${(props) => (props.selected ? "100%" : "99%")};
     border-radius: 50%;
-    margin-bottom:${props => props.selected ? "0" : "1%"};;
-    box-shadow: ${props => props.selected ? "0 0 10px 1px #3498db" : "none"};
+    margin-bottom: ${(props) => (props.selected ? "0" : "1%")};
+    box-shadow: ${(props) =>
+      props.selected ? "0 0 10px 1px #3498db" : "none"};
   }
-  h3{
+  h3 {
     margin-top: 10px;
     font-size: 1rem;
   }
-  .net-worth{
-    font-weight: ${props => props.selected ? "bold" : "none"};
+  .net-worth {
+    font-weight: ${(props) => (props.selected ? "bold" : "none")};
   }
-  .company>span{
+  .company > span {
     background-color: #34495e;
     margin-right: 2px;
   }
 `;
 
-const PersonCard = (props) => {
+const PersonCard = ({ person, id, selected, handleClick }) => {
   return (
-    <StyledPersonCard onClick={props.handleClick} id={props.id} selected={props.selected}>
-      <img src={props.person.img} alt={props.person.name} />
-      <h3 className="person-name">{props.person.name}</h3>
-      <span>$ <span className="net-worth">{parseInt(props.person.netWorth)}</span> M</span>
-      <div className="company">{props.person.source.split(",").map((e, i) => <Badge text={e} key={i} />)}</div>
-      {props.person.industries.map((e, i) => <Badge text={e} key={i} />)}
+    <StyledPersonCard onClick={handleClick} id={id} selected={selected}>
+      <img src={person.img} alt={person.name} />
+      <h3 className="person-name">{person.name}</h3>
+      <span>
+        $ <span className="net-worth">{parseInt(person.netWorth)}</span> M
+      </span>
+      <div className="company">
+        {person.source.split(",").map((e, i) => (
+          <Badge text={e} key={i} />
+        ))}
+      </div>
+      {person.industries.map((e, i) => (
+        <Badge text={e} key={i} />
+      ))}
     </StyledPersonCard>
   );
-}
+};
+
+PersonCard.propTypes = {
+  person: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  selected: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default PersonCard;
